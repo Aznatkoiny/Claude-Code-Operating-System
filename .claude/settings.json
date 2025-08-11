@@ -1,0 +1,184 @@
+{
+  "version": "1.0.0",
+  "name": "Claude Code Operating System",
+  "description": "Context Engineering OS for preventing spaghetti code and maintaining persistent memory",
+  
+  "allowedTools": [
+    "Read",
+    "Write",
+    "Edit",
+    "MultiEdit",
+    "Glob",
+    "Grep",
+    "GitStatus",
+    "GitDiff",
+    "GitLog",
+    "GitShow",
+    "Bash(npm:*)",
+    "Bash(yarn:*)",
+    "Bash(pnpm:*)",
+    "Bash(git add:*)",
+    "Bash(git commit:*)",
+    "Bash(git push:*)",
+    "Bash(git pull:*)",
+    "Bash(git status:*)",
+    "Bash(git diff:*)",
+    "Bash(git log:*)",
+    "Bash(python:*)",
+    "Bash(node:*)",
+    "Bash(jest:*)",
+    "Bash(vitest:*)",
+    "Bash(pytest:*)",
+    "Bash(eslint:*)",
+    "Bash(prettier:*)",
+    "Bash(tsc:*)"
+  ],
+  
+  "contextEngineering": {
+    "maxTokensPerContext": 50000,
+    "compressionThreshold": 40000,
+    "chunkSize": 10000,
+    "memoryRetention": "persistent",
+    "patternRecognition": true,
+    "dependencyTracking": true,
+    "impactAnalysis": true
+  },
+  
+  "qualityGates": {
+    "preImplementation": {
+      "requirementsValidation": true,
+      "designReview": true,
+      "impactAssessment": true
+    },
+    "implementation": {
+      "incrementalTesting": true,
+      "continuousValidation": true,
+      "patternCompliance": true
+    },
+    "postImplementation": {
+      "integrationTesting": true,
+      "performanceCheck": true,
+      "securityScan": true,
+      "documentationUpdate": true
+    }
+  },
+  
+  "subagentActivation": {
+    "automatic": true,
+    "delegationThreshold": 0.7,
+    "parallelExecution": true,
+    "maxConcurrentAgents": 3
+  },
+  
+  "mcpServers": {
+    "context7": {
+      "enabled": true,
+      "autoActivate": ["library", "framework", "documentation"],
+      "endpoint": "context7://",
+      "priority": 1
+    },
+    "sequential": {
+      "enabled": true,
+      "autoActivate": ["complex", "debug", "architecture"],
+      "endpoint": "sequential://",
+      "priority": 2
+    },
+    "github": {
+      "enabled": true,
+      "autoActivate": ["issue", "pr", "commit"],
+      "endpoint": "github://",
+      "priority": 3
+    },
+    "memory": {
+      "enabled": true,
+      "persistent": true,
+      "endpoint": "memory://",
+      "priority": 0
+    }
+  },
+  
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-write-validation.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-write-validation.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/update-dependency-graph.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/load-context.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/save-session-state.sh"
+          }
+        ]
+      }
+    ]
+  },
+  
+  "workflowAutomation": {
+    "gitWorkflow": {
+      "autoCommit": false,
+      "semanticCommits": true,
+      "branchNaming": "feature/{task}",
+      "prTemplate": true
+    },
+    "testingWorkflow": {
+      "preCommitTests": true,
+      "coverageThreshold": 80,
+      "continuousIntegration": true
+    },
+    "deploymentWorkflow": {
+      "stagingFirst": true,
+      "smokeTests": true,
+      "rollbackStrategy": "automatic"
+    }
+  },
+  
+  "performanceOptimization": {
+    "caching": true,
+    "cacheTTL": 3600,
+    "parallelOperations": true,
+    "lazyLoading": true,
+    "compressionEnabled": true
+  },
+  
+  "errorHandling": {
+    "autoRecovery": true,
+    "fallbackStrategies": true,
+    "errorLogging": true,
+    "userNotification": true
+  }
+}
