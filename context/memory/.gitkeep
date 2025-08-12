@@ -1,0 +1,9 @@
+# Memory Storage Directory
+
+This directory stores persistent memory and context for Claude Code sessions.
+
+## Structure:
+- `sessions/` - Individual session memories
+- `patterns/` - Reusable code patterns
+- `knowledge/` - Project-specific knowledge base
+- `contexts/` - Saved context states
