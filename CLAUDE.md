@@ -2,6 +2,21 @@
 
 This file provides comprehensive guidance to Claude Code for maintaining context, preventing spaghetti code, and orchestrating complex software development using advanced context engineering principles.
 
+## 📜 Operating Constitution
+- `.claude/commands`: reusable slash commands
+- `.claude/agents`: specialized subagents (see docs/subagents.md)
+- `.claude/hooks`: automation hooks
+- `.mcp.json`: configure external MCP servers (see docs/mcp-servers.md)
+- `docs/`: engineering guides and rule templates
+  - `context-engineering.md`
+  - `subagents.md`
+  - `claude-templates.md`
+
+## 🗃️ Nested Rules Files
+- Directories may define their own `CLAUDE.md` to scope rules.
+- Use `See: @../CLAUDE.md` to inherit parent guidance.
+- Templates are available in `docs/claude-templates.md`.
+
 ## 🧠 Core Principles
 
 ### Context Over Everything
@@ -106,6 +121,21 @@ src/
 - **Duplication**: Less than 3% code duplication
 
 ## 🔄 Development Workflow
+
+### Core Cycle
+1. **Explore** – gather context and read relevant files
+2. **Plan** – outline steps or use Plan mode (`Shift+Tab` twice)
+3. **Code** – implement small, testable changes
+4. **Commit** – run tests, update docs, and commit
+
+### Test-Driven Development
+1. Write or update tests first
+2. Run `/test-all`
+3. Implement code to satisfy tests
+
+### Additional Workflows
+- Screenshot iteration for UI tweaks
+- Codebase Q&A and onboarding for new contributors
 
 ### Pre-Implementation Phase (Ultra-Think)
 1. **Context Loading**: Load relevant files and patterns
@@ -361,6 +391,12 @@ After each task:
 - `/find-patterns`: Identify reusable patterns
 - `/check-quality`: Run quality metrics
 - `/security-scan`: Security vulnerability check
+
+## 🔒 Security & Quality
+- Act as a security-conscious developer; treat all code as untrusted until validated
+- Run `/security-scan` and `/check-quality` after significant changes
+- Follow language-specific secure coding practices
+- Prefer least-privilege commands and confirm destructive actions
 
 ## 🚀 Performance Guidelines
 
