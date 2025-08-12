@@ -1,4 +1,4 @@
-# CLAUDE.md - Constitutional Framework for Claude Code OS v3.0
+# CLAUDE.md - Constitutional Framework for Claude Code OS v4.0
 
 > **This is your constitution. Follow these rules, workflows, and patterns for every interaction.**
 
@@ -24,6 +24,13 @@ Explore → Plan → Code → Test → Commit
 ```
 Every task follows this cycle. No exceptions.
 
+### 4. Thinking Budget Management
+- **"think"**: Standard analysis (default)
+- **"think harder"**: Complex problems (~2x tokens)
+- **"think step-by-step"**: Decomposition (~3x tokens)
+- **"ultrathink"**: Deep analysis (~5x tokens)
+- **"ULTRA-THINK"**: Emergency analysis (~10x tokens)
+
 ## 🎮 Interface & Navigation
 
 ### Keyboard Shortcuts
@@ -48,6 +55,7 @@ Every task follows this cycle. No exceptions.
 ### 1. Explore → Plan → Code → Commit Workflow
 ```bash
 # 1. EXPLORE: Understand the codebase
+/context-prime --deep
 /scan-project --focus=architecture
 read relevant files
 map dependencies
@@ -63,26 +71,18 @@ run tests after each change
 validate against patterns
 
 # 4. COMMIT: Version control
-git add -p  # Review changes
-git commit -m "feat: description"
+/commit-smart  # Intelligent conventional commits
 git push
 ```
 
 ### 2. Test-Driven Development (TDD)
 ```bash
-# 1. Write tests first
-create test file
-define test cases
-run tests (expect failures)
+/tdd feature-name --framework jest --coverage
 
-# 2. Implement to pass tests
-write minimal code
-/test
-iterate until green
-
-# 3. Refactor
-improve code quality
-maintain green tests
+# Automated Red-Green-Refactor cycle
+# 1. Write failing tests
+# 2. Implement minimal code
+# 3. Refactor with confidence
 ```
 
 ### 3. Screenshot Iteration (UI Work)
@@ -100,19 +100,15 @@ screenshot again
 repeat until satisfied
 ```
 
-### 4. Parallel Agent Workflow
+### 4. Multi-Agent Orchestration
 ```bash
-# Use git worktrees for parallel work
-git worktree add ../feature-1
-git worktree add ../feature-2
+/multi-agent orchestration-plan.yml --agents 3 --mode parallel
 
-# Spawn separate Claude instances
-claude --worktree=../feature-1 "implement auth"
-claude --worktree=../feature-2 "implement API"
-
-# Merge results
-git worktree remove feature-1
-git merge feature-1
+# Spawns parallel agents for:
+# - Frontend development
+# - Backend API
+# - Testing suite
+# Automatically merges results
 ```
 
 ### 5. Headless Automation
@@ -169,14 +165,15 @@ NEVER:
 
 ### Security Scanning Workflow
 ```bash
-# Before every commit
-npm audit
-pip audit
-bandit -r .
-safety check
-semgrep --config=auto
+/security-scan --deep
 
-# Fix all critical/high issues before proceeding
+# Runs automatically:
+# - npm audit
+# - pip audit
+# - bandit -r .
+# - safety check
+# - semgrep --config=auto
+# - OWASP dependency check
 ```
 
 ### CWE Prevention Checklist
@@ -202,7 +199,7 @@ export CLAUDE_WORKSPACE=$(pwd)
 export PATH=$CLAUDE_WORKSPACE/bin:$PATH
 
 # Initialize
-claude --init
+/init-os
 ```
 
 ### Directory-Specific Rules
@@ -216,6 +213,9 @@ project/
 ├── tests/
 │   └── CLAUDE.md            # Testing rules
 └── .claude/
+    ├── commands/            # Custom slash commands
+    ├── hooks/               # Lifecycle hooks
+    ├── agents/              # Agent configurations
     └── CLAUDE.local.md      # Private/secret rules (git-ignored)
 ```
 
@@ -236,7 +236,7 @@ reference:
 ### Token Optimization
 ```bash
 # Monitor usage
-ccusage  # View token consumption
+ccusage  # View token consumption dashboard
 
 # Clear strategies
 /clear      # Full reset
@@ -255,6 +255,7 @@ Before new feature: /clear
 3. **Use Opus for complex reasoning**
 4. **Batch similar operations**
 5. **Reuse patterns from memory**
+6. **Leverage slash commands for common tasks**
 
 ## 🔧 Tool & Permission Management
 
@@ -301,9 +302,13 @@ require_confirmation:
       "description": "Browser automation",
       "use_for": ["e2e testing", "scraping", "UI validation"]
     },
-    "taskmaster": {
-      "description": "Task management",
-      "use_for": ["project planning", "issue tracking", "todos"]
+    "github": {
+      "description": "GitHub integration",
+      "use_for": ["PR management", "issue tracking", "code review"]
+    },
+    "aws-documentation": {
+      "description": "AWS service docs",
+      "use_for": ["cloud architecture", "service configuration"]
     }
   }
 }
@@ -319,20 +324,24 @@ require_confirmation:
 
 # Browser testing
 "Using Playwright, test the login flow"
+
+# GitHub integration
+"Using GitHub server, create PR from feature branch"
 ```
 
 ## 📝 Custom Commands
 
 ### Essential Commands
-- `/init`: Initialize project with CLAUDE.md
+- `/init-os`: Initialize Claude Code OS
+- `/context-prime`: Load comprehensive project context
 - `/scan-project`: Deep codebase analysis
 - `/generate-prp`: Create Product Requirements Prompt
 - `/execute-prp`: Implement from PRP
 - `/security-scan`: Run security audit
-- `/test`: Run test suite
-- `/commit`: Smart git commit
-- `/deploy`: Deployment pipeline
-- `/review`: Code review with AI
+- `/tdd`: Test-driven development workflow
+- `/commit-smart`: Intelligent git commits
+- `/multi-agent`: Orchestrate parallel agents
+- `/build-feature`: Complete feature workflow
 
 ### Command Patterns
 ```bash
@@ -380,6 +389,32 @@ agent2: review_code
 agent3: optimize_code
 ```
 
+## 🪝 Hooks Configuration
+
+### Lifecycle Hooks
+```json
+{
+  "hooks": {
+    "pre-commit": "npm test && npm run lint",
+    "post-commit": "git push",
+    "pre-code": "security-check",
+    "post-code": "format && test",
+    "on-error": "rollback && notify"
+  }
+}
+```
+
+### Custom Hook Implementation
+```javascript
+// .claude/hooks/pre-commit.js
+module.exports = async (context) => {
+  await runTests();
+  await checkSecurity();
+  await validateCommitMessage();
+  return { proceed: true };
+};
+```
+
 ## 🚀 Advanced Techniques
 
 ### Voice Input Integration
@@ -398,6 +433,12 @@ Use Cmd+K for inline assistance
 # Cursor
 Native integration
 Multi-file context awareness
+
+# Neovim
+Use claude-code.nvim plugin
+
+# Emacs
+Use claude-code.el
 ```
 
 ### Continuous Improvement Loop
@@ -423,6 +464,7 @@ while developing:
 - [ ] No console.logs
 - [ ] No commented code
 - [ ] No TODO comments
+- [ ] Conventional commit message
 
 ### Continuous Validation
 ```bash
@@ -442,8 +484,8 @@ npm run e2e
 ### Session Lifecycle
 ```bash
 # Start
-claude --init
-/load-context previous-session
+/init-os
+/context-prime --session previous
 
 # During
 /save-checkpoint after-feature-x
@@ -498,13 +540,13 @@ git reset --hard HEAD~1
 ### Continuous Learning
 ```bash
 # When Claude makes a mistake
-# "Add this to CLAUDE.md: [correct approach]"
+"Add this to CLAUDE.md: [correct approach]"
 
 # When discovering patterns
-# "Remember this pattern: [pattern description]"
+"Remember this pattern: [pattern description]"
 
 # When finding better solutions
-# "Update our approach: [new method]"
+"Update our approach: [new method]"
 ```
 
 ### Rule Evolution
@@ -524,12 +566,41 @@ Track these for continuous improvement:
 - **Documentation coverage**: 100% public APIs
 - **Token efficiency**: <10k per feature
 - **Commit frequency**: Every 30 minutes
+- **Code review turnaround**: <2 hours
+
+## 🔗 Integration with ClaudeLog Techniques
+
+### Plan Mode
+```bash
+# Activate automatic task decomposition
+Shift+Tab → Plan Mode
+# Claude automatically breaks down complex tasks
+```
+
+### UltraThink Pattern
+```bash
+# For critical decisions
+"ULTRA-THINK: What's the optimal database architecture for this scale?"
+# Allocates maximum thinking tokens for deep analysis
+```
+
+### Agent-First Design
+```yaml
+# Design systems optimized for AI collaboration
+principles:
+  - Clear boundaries
+  - Explicit contracts
+  - Atomic operations
+  - Comprehensive logging
+  - Self-documenting code
+```
 
 ---
 
 **Remember**: This constitution guides every action. When in doubt, consult these rules. When discovering better patterns, update this document. This is a living constitution that evolves with the project.
 
-**Version**: 3.0.0
+**Version**: 4.0.0
 **Last Updated**: 2024-08-11
 **Authority**: Supreme guidance for all Claude Code operations
 **Enforcement**: Mandatory for all interactions
+**Based on**: Best practices from awesome-claude-code community
