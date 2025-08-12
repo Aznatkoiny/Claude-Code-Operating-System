@@ -1,0 +1,268 @@
+# CLAUDE.local.md - Private Configuration Template
+
+> **⚠️ IMPORTANT: Add this file to .gitignore! Never commit secrets!**
+
+This file contains project-specific private configurations, credentials, and sensitive information that should never be shared.
+
+## 🔐 Private Environment Variables
+
+```bash
+# API Keys (NEVER COMMIT THESE)
+export OPENAI_API_KEY="sk-..."
+export ANTHROPIC_API_KEY="sk-ant-..."
+export GITHUB_TOKEN="ghp_..."
+export DATABASE_URL="postgresql://user:password@localhost:5432/db"
+export REDIS_URL="redis://localhost:6379"
+export AWS_ACCESS_KEY_ID="AKIA..."
+export AWS_SECRET_ACCESS_KEY="..."
+export STRIPE_SECRET_KEY="sk_test_..."
+export SENDGRID_API_KEY="SG...."
+export SENTRY_DSN="https://...@sentry.io/..."
+```
+
+## 🏢 Company-Specific Rules
+
+### Internal Services
+```yaml
+internal_apis:
+  auth_service: "https://internal-auth.company.com"
+  data_warehouse: "redshift://internal-dw.company.com"
+  monitoring: "datadog://internal.company.com"
+  
+internal_packages:
+  - "@company/ui-components": "^2.1.0"
+  - "@company/auth-sdk": "^1.5.0"
+  - "@company/logger": "^3.0.0"
+```
+
+### Compliance Requirements
+```yaml
+compliance:
+  - GDPR: EU users require consent
+  - CCPA: California users can request deletion
+  - HIPAA: Health data requires encryption
+  - SOC2: Audit logging required
+  - PCI-DSS: Credit card data isolation
+```
+
+### Security Policies
+```yaml
+security_policies:
+  - MFA required for production access
+  - VPN required for database access
+  - Code signing required for releases
+  - Penetration testing quarterly
+  - Security training annually
+```
+
+## 👤 Personal Preferences
+
+### Code Style Overrides
+```yaml
+personal_style:
+  - Use 2 spaces for indentation (override company 4 spaces)
+  - Prefer async/await over promises
+  - Use TypeScript strict mode always
+  - Prefer functional programming patterns
+  - Use early returns aggressively
+```
+
+### Workflow Preferences
+```yaml
+workflow:
+  - Commit every 30 minutes minimum
+  - Write tests before implementation
+  - Document while coding, not after
+  - Review own PRs before requesting review
+  - Use conventional commits always
+```
+
+### Tool Configuration
+```bash
+# Personal tool settings
+alias claude="claude --dangerously-skip-permissions"
+alias test="npm test -- --watch"
+alias commit="git add -A && git commit -m"
+
+# Custom VS Code settings
+code --install-extension vscodevim.vim
+code --install-extension github.copilot
+```
+
+## 🚫 Project-Specific Gotchas
+
+### Known Issues
+```yaml
+known_issues:
+  - "Database migration #47 is broken, skip it"
+  - "Test suite flaky on Windows, use WSL"
+  - "API endpoint /legacy is deprecated but still used"
+  - "Memory leak in worker process, restart daily"
+  - "Race condition in auth flow, use mutex"
+```
+
+### Technical Debt
+```yaml
+tech_debt:
+  - "TODO: Refactor user service (ticket #1234)"
+  - "HACK: Temporary fix for Safari bug"
+  - "FIXME: SQL injection risk in search (line 456)"
+  - "DEPRECATED: Old API still in use by mobile app"
+  - "PERFORMANCE: N+1 query in dashboard"
+```
+
+### Workarounds
+```python
+# Temporary workaround for library bug
+if version < "2.0.0":
+    # Use old API
+    result = old_function()
+else:
+    # Use new API
+    result = new_function()
+
+# Monkey patch for third-party bug
+ThirdPartyClass.buggy_method = fixed_method
+```
+
+## 📊 Performance Baselines
+
+### Current Metrics
+```yaml
+performance:
+  api_response_time: 45ms average
+  database_query_time: 12ms average
+  build_time: 2m 30s
+  test_suite_time: 1m 15s
+  bundle_size: 1.2MB gzipped
+  memory_usage: 512MB average
+  cpu_usage: 30% average
+```
+
+### Optimization Targets
+```yaml
+targets:
+  api_response_time: <50ms p95
+  database_query_time: <20ms p95
+  build_time: <3m
+  test_suite_time: <2m
+  bundle_size: <1.5MB
+  memory_usage: <1GB
+  cpu_usage: <50%
+```
+
+## 🔴 Production Incidents
+
+### Recent Incidents
+```yaml
+incidents:
+  - date: 2024-08-01
+    issue: "Database connection pool exhausted"
+    resolution: "Increased pool size to 50"
+    
+  - date: 2024-07-15
+    issue: "Memory leak in background worker"
+    resolution: "Added garbage collection trigger"
+    
+  - date: 2024-07-01
+    issue: "API rate limit hit by single client"
+    resolution: "Implemented per-client rate limiting"
+```
+
+### Incident Response
+```bash
+# Emergency contacts
+ON_CALL_ENGINEER="phone: +1-555-0123"
+ESCALATION_MANAGER="email: manager@company.com"
+SECURITY_TEAM="slack: #security-incidents"
+
+# Emergency procedures
+./scripts/emergency-rollback.sh
+./scripts/scale-up-servers.sh
+./scripts/enable-maintenance-mode.sh
+```
+
+## 🧪 Experimental Features
+
+### Feature Flags
+```yaml
+feature_flags:
+  new_payment_flow: false
+  ai_recommendations: true
+  dark_mode: true
+  beta_api_v2: false
+  experimental_cache: true
+```
+
+### A/B Tests
+```yaml
+ab_tests:
+  checkout_flow:
+    variant_a: 50%  # Old flow
+    variant_b: 50%  # New flow
+    
+  pricing_page:
+    control: 33%
+    variant_1: 33%  # Highlighted plan
+    variant_2: 34%  # Comparison table
+```
+
+## 📝 Personal Notes
+
+```markdown
+# Project Context
+- Main stakeholder: Product Team
+- Critical deadline: Q4 2024 launch
+- Key dependency: Payment service migration
+- Blocker: Waiting for security review
+
+# Team Information
+- Tech Lead: @johndoe
+- Product Manager: @janesmith
+- Designer: @bobdesigner
+- QA Lead: @alicetester
+
+# My Tasks
+- [ ] Implement user authentication
+- [ ] Add rate limiting to API
+- [ ] Write integration tests
+- [ ] Update documentation
+- [ ] Performance optimization
+
+# Meeting Notes
+- Stand-up: Daily 9:30 AM
+- Sprint Planning: Monday 2 PM
+- Retro: Friday 4 PM
+- 1:1 with manager: Thursday 3 PM
+```
+
+## 🔄 Sync Settings
+
+### Git Configuration
+```bash
+git config user.name "Your Name"
+git config user.email "your.email@company.com"
+git config core.editor "vim"
+git config pull.rebase true
+```
+
+### SSH Keys
+```bash
+# Development server
+ssh-add ~/.ssh/id_rsa_dev
+
+# Production server (restricted)
+ssh-add ~/.ssh/id_rsa_prod
+
+# Git repositories
+ssh-add ~/.ssh/id_rsa_github
+```
+
+---
+
+**Remember**: 
+1. Never commit this file
+2. Keep it updated with project changes
+3. Share relevant non-sensitive parts in CLAUDE.md
+4. Back up securely (encrypted)
+5. Rotate credentials regularly
