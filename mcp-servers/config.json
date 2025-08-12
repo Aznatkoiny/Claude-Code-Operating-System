@@ -1,0 +1,58 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@context7/mcp-server"],
+      "description": "Official documentation and best practices",
+      "use_cases": [
+        "Framework documentation (React, Vue, Next.js)",
+        "API references",
+        "Library documentation",
+        "Code examples",
+        "Best practices"
+      ]
+    },
+    "sequential": {
+      "command": "npx",
+      "args": ["-y", "@sequential/mcp-server"],
+      "description": "Complex reasoning and problem solving",
+      "use_cases": [
+        "Architecture design",
+        "Algorithm optimization",
+        "Debugging complex issues",
+        "System design",
+        "Performance analysis"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp-server"],
+      "description": "Browser automation and testing",
+      "use_cases": [
+        "E2E testing",
+        "Web scraping",
+        "UI validation",
+        "Visual regression testing",
+        "Performance testing"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "GitHub integration"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem"],
+      "description": "Advanced file operations"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "Persistent memory across sessions"
+    }
+  }
+}
