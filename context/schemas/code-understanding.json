@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Code Understanding Schema",
+  "description": "Standardized format for analyzing and understanding code",
+  "type": "object",
+  "required": ["codebase", "functionality", "quality"],
+  "properties": {
+    "codebase": {
+      "type": "object",
+      "required": ["structure", "architecture", "technologies"],
+      "properties": {
+        "structure": {
+          "type": "array",
+          "description": "Key files and directories with their purposes",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "purpose": { "type": "string" },
+              "importance": { "type": "string", "enum": ["critical", "important", "standard", "optional"] }
+            }
+          }
+        },
+        "architecture": {
+          "type": "string",
+          "description": "Overall architectural pattern",
+          "enum": ["monolithic", "microservices", "serverless", "modular", "layered", "event-driven", "other"]
+        },
+        "technologies": {
+          "type": "array",
+          "description": "Key technologies, frameworks, and libraries",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "version": { "type": "string" },
+              "purpose": { "type": "string" },
+              "category": { "type": "string", "enum": ["framework", "library", "tool", "language", "database", "service"] }
+            }
+          }
+        },
+        "dependencies": {
+          "type": "object",
+          "properties": {
+            "count": { "type": "integer" },
+            "critical": { "type": "array", "items": { "type": "string" } },
+            "outdated": { "type": "array", "items": { "type": "string" } },
+            "security_issues": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "functionality": {
+      "type": "object",
+      "required": ["entry_points", "core_workflows", "data_flow"],
+      "properties": {
+        "entry_points": {
+          "type": "array",
+          "description": "Main entry points to the application",
+          "items": {
+            "type": "object",
+            "properties": {
+              "file": { "type": "string" },
+              "function": { "type": "string" },
+              "type": { "type": "string", "enum": ["main", "api", "cli", "web", "worker", "test"] }
+            }
+          }
+        },
+        "core_workflows": {
+          "type": "array",
+          "description": "Primary functional flows",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "steps": { "type": "array", "items": { "type": "string" } },
+              "complexity": { "type": "string", "enum": ["simple", "moderate", "complex", "very_complex"] }
+            }
+          }
+        },
+        "data_flow": {
+          "type": "string",
+          "description": "How data moves through the system"
+        },
+        "api_endpoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"] },
+              "path": { "type": "string" },
+              "purpose": { "type": "string" },
+              "authentication": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "required": ["strengths", "concerns", "patterns"],
+      "properties": {
+        "strengths": {
+          "type": "array",
+          "description": "Well-designed aspects",
+          "items": { "type": "string" }
+        },
+        "concerns": {
+          "type": "array",
+          "description": "Potential issues or areas for improvement",
+          "items": {
+            "type": "object",
+            "properties": {
+              "issue": { "type": "string" },
+              "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+              "location": { "type": "string" },
+              "recommendation": { "type": "string" }
+            }
+          }
+        },
+        "patterns": {
+          "type": "array",
+          "description": "Recurring design patterns",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pattern": { "type": "string" },
+              "usage": { "type": "string" },
+              "effectiveness": { "type": "string", "enum": ["excellent", "good", "adequate", "poor"] }
+            }
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "test_coverage": { "type": "number", "minimum": 0, "maximum": 100 },
+            "code_duplication": { "type": "number", "minimum": 0, "maximum": 100 },
+            "complexity_score": { "type": "number" },
+            "maintainability_index": { "type": "number" }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "analyzed_at": { "type": "string", "format": "date-time" },
+        "analyzer_version": { "type": "string" },
+        "total_files": { "type": "integer" },
+        "total_lines": { "type": "integer" },
+        "primary_language": { "type": "string" }
+      }
+    }
+  }
+}
