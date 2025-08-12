@@ -1,0 +1,107 @@
+{
+  "name": "claude-code-operating-system",
+  "version": "4.1.0",
+  "description": "The Ultimate Framework for AI-Powered Development with Claude Code - Enhanced with Context Engineering",
+  "main": "src/index.js",
+  "bin": {
+    "cclos": "./src/cli.js",
+    "cclos-init": "./src/commands/init-os.js",
+    "cclos-prime": "./src/commands/context-prime.js"
+  },
+  "scripts": {
+    "init": "node src/commands/init-os.js",
+    "prime": "node src/commands/context-prime.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.js",
+    "format": "prettier --write src/**/*.js",
+    "security": "npm audit && npm audit fix",
+    "validate": "npm run lint && npm run test && npm run security",
+    "build": "echo 'No build step required'",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "ai",
+    "development",
+    "framework",
+    "mcp",
+    "context-engineering",
+    "cognitive-tools",
+    "protocol-shells"
+  ],
+  "author": "Claude Code OS Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aznatkoiny/Claude-Code-Operating-System.git"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.5",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.3",
+    "yaml": "^2.3.1",
+    "ajv": "^8.12.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "eslint": "^8.44.0",
+    "prettier": "^3.0.0",
+    "nodemon": "^3.0.1",
+    "@types/node": "^20.4.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js",
+      "**/__tests__/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 100
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es2021": true,
+      "jest": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "no-console": "off",
+      "prefer-const": "error",
+      "arrow-body-style": ["error", "as-needed"]
+    }
+  }
+}
