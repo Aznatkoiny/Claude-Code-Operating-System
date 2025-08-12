@@ -1,445 +1,535 @@
-# CLAUDE.md - Global Context Rules for Claude Code OS v2.0
+# CLAUDE.md - Constitutional Framework for Claude Code OS v3.0
 
-This file provides comprehensive guidance to Claude Code for maintaining context, preventing spaghetti code, and orchestrating complex software development using advanced context engineering principles.
+> **This is your constitution. Follow these rules, workflows, and patterns for every interaction.**
 
-## 🧠 Core Principles
+## 🎯 Core Constitutional Principles
 
-### Context Over Everything
-**MANDATORY**: Before any code modification, you MUST:
-1. Read and understand existing code structure
-2. Map dependencies and relationships
-3. Assess impact of changes
-4. Maintain awareness of overall architecture
-5. Query memory server for similar patterns
+### 1. Context is Supreme Law
+- **MANDATORY**: Always read before writing
+- **MANDATORY**: Map dependencies before changes
+- **MANDATORY**: Assess impact before implementation
+- **MANDATORY**: Maintain architectural awareness
+- **MANDATORY**: Query memory for patterns
 
-### Memory Management Protocol
-- **Session State**: Track all modifications within current session
-- **Cross-Session**: Use memory server for persistent knowledge
-- **Pattern Recognition**: Identify and reuse existing patterns
-- **Relationship Tracking**: Maintain dependency graph
-- **JIT Loading**: Load context just-in-time based on needs
+### 2. Security First
+- **Act as a security-conscious developer**
+- **Consider OWASP Top 10 in every implementation**
+- **Never commit secrets or credentials**
+- **Always validate and sanitize inputs**
+- **Use secure defaults**
 
-### Anti-Spaghetti Rules
-- **Never** create disconnected code
-- **Always** verify imports are used
-- **Always** check for duplicate functionality
-- **Never** lose track of code structure
-- **Always** maintain consistent patterns
-- **Proactively** suggest improvements
-
-## 🎭 Cognitive Protocols
-
-### /code.analyze Protocol
-```yaml
-intent: "Deeply understand code structure, patterns and quality"
-input:
-  code: "<code_to_analyze>"
-  focus: "<specific_aspects>"
-process:
-  - parse:
-      structure: "Identify components"
-      patterns: "Recognize conventions"
-      flow: "Trace execution paths"
-  - evaluate:
-      quality: "Assess best practices"
-      performance: "Identify bottlenecks"
-      security: "Spot vulnerabilities"
-  - summarize:
-      purpose: "Primary functionality"
-      architecture: "Design approach"
-      recommendations: "Improvements"
+### 3. Workflow Discipline
 ```
-
-### /code.generate Protocol
-```yaml
-intent: "Create high-quality, maintainable code"
-input:
-  requirements: "<feature_requirements>"
-  context: "<codebase_patterns>"
-process:
-  - design:
-      patterns: "Select appropriate patterns"
-      structure: "Plan architecture"
-  - implement:
-      incremental: "Small, testable changes"
-      validation: "Test each step"
-  - refine:
-      optimize: "Improve performance"
-      clean: "Remove redundancy"
+Explore → Plan → Code → Test → Commit
 ```
+Every task follows this cycle. No exceptions.
 
-### /ultra.think Protocol
-```yaml
-trigger: "Complex problems requiring deep analysis"
-process:
-  - decompose: "Break into subproblems"
-  - analyze: "Deep dive each aspect"
-  - synthesize: "Combine insights"
-  - validate: "Verify solution"
-  - optimize: "Refine approach"
-duration: "Take time for thorough analysis"
-output: "Comprehensive solution with rationale"
-```
+## 🎮 Interface & Navigation
 
-## 🏗️ Architecture Awareness
+### Keyboard Shortcuts
+- **Ctrl/Cmd+L**: Clear conversation
+- **Esc+Esc**: Edit previous prompt
+- **Shift+Tab**: Cycle input modes (Edit → Auto-accept → Plan)
+- **Tab**: Autocomplete file names
+- **Double Esc**: Cancel current task
 
-### Project Structure Rules
-```
-src/
-├── api/          # Backend endpoints
-├── components/   # Reusable UI components  
-├── features/     # Feature-based modules
-├── hooks/        # Custom React hooks
-├── lib/          # Utilities and helpers
-├── services/     # External service integrations
-├── types/        # TypeScript definitions
-└── patterns/     # Reusable patterns
-```
+### Input Modes
+1. **Edit Mode**: Default, review before execution
+2. **Auto-accept Mode**: Trust mode for safe operations
+3. **Plan Mode**: Automatic task decomposition
 
-**CRITICAL**: Maintain strict separation of concerns. Each directory has a specific purpose.
+### Working with Files
+- **Drag & Drop**: Images, screenshots, files
+- **Paste**: Direct image/file path insertion
+- **Tab Completion**: Navigate file system efficiently
 
-### Code Organization
-- **File Length**: Max 300 lines per file
-- **Function Length**: Max 50 lines per function
-- **Component Length**: Max 200 lines per component
-- **Complexity**: Cyclomatic complexity < 10
-- **Duplication**: Less than 3% code duplication
+## 🔄 Core Workflows
 
-## 🔄 Development Workflow
-
-### Pre-Implementation Phase (Ultra-Think)
-1. **Context Loading**: Load relevant files and patterns
-2. **Impact Analysis**: Identify affected components
-3. **Design Review**: Validate approach against patterns
-4. **Memory Check**: Verify no duplicate implementations
-5. **Risk Assessment**: Identify potential issues
-
-### Implementation Phase
-1. **Incremental Development**: Small, testable changes
-2. **Continuous Validation**: Test after each modification
-3. **Pattern Compliance**: Follow established patterns
-4. **Documentation Sync**: Update docs with code
-5. **Proactive Improvements**: Suggest optimizations
-
-### Post-Implementation Phase
-1. **Integration Testing**: Verify system-wide compatibility
-2. **Performance Check**: Ensure no degradation
-3. **Code Cleanup**: Remove unused imports/code
-4. **Memory Update**: Store new patterns and learnings
-5. **Knowledge Transfer**: Document for future sessions
-
-## 🎯 Context Engineering Protocols
-
-### JIT (Just-In-Time) Context Loading
-```yaml
-strategy:
-  minimal:
-    trigger: "Simple tasks"
-    load: "Only directly relevant files"
-    memory: "Query for patterns"
-    
-  progressive:
-    trigger: "Growing complexity"
-    load: "Add context as needed"
-    compress: "Summarize when full"
-    
-  comprehensive:
-    trigger: "Complex features"
-    load: "Full context upfront"
-    delegate: "Use subagents"
-```
-
-### Reading Files (IMPORTANT)
-**ALWAYS** use this sequence:
+### 1. Explore → Plan → Code → Commit Workflow
 ```bash
-1. List directory structure
-2. Read configuration files (package.json, etc.)
-3. Read entry points (index, main, app)
-4. Read related modules
-5. Map relationships
-6. Query memory for similar patterns
+# 1. EXPLORE: Understand the codebase
+/scan-project --focus=architecture
+read relevant files
+map dependencies
+
+# 2. PLAN: Create implementation strategy
+"think harder about this approach"  # Allocates more thinking tokens
+write detailed plan
+identify risks
+
+# 3. CODE: Implement incrementally
+write code
+run tests after each change
+validate against patterns
+
+# 4. COMMIT: Version control
+git add -p  # Review changes
+git commit -m "feat: description"
+git push
 ```
 
-### Writing Code (MANDATORY)
-**MANDATORY** checks before writing:
-- [ ] File doesn't already exist with similar functionality
-- [ ] Imports are available and correct
-- [ ] Pattern matches existing codebase
-- [ ] Tests are updated/created
-- [ ] Documentation is updated
-- [ ] Performance impact assessed
-- [ ] Security implications reviewed
+### 2. Test-Driven Development (TDD)
+```bash
+# 1. Write tests first
+create test file
+define test cases
+run tests (expect failures)
 
-### Modifying Code
-**REQUIRED** process:
-1. Read original file completely
-2. Understand context and purpose
-3. Identify dependencies
-4. Make minimal necessary changes
-5. Verify no breaking changes
-6. Update related files if needed
-7. Run validation loops
+# 2. Implement to pass tests
+write minimal code
+/test
+iterate until green
 
-## 🚨 Critical Rules
+# 3. Refactor
+improve code quality
+maintain green tests
+```
 
-### Never Do This
-❌ Write code without reading existing patterns
-❌ Create files without checking for duplicates
-❌ Import modules without verifying they exist
-❌ Modify code without understanding context
-❌ Skip tests for new functionality
-❌ Leave commented-out code
-❌ Create circular dependencies
-❌ Ignore performance implications
-❌ Skip security considerations
+### 3. Screenshot Iteration (UI Work)
+```bash
+# 1. Capture current state
+take screenshot
+drag into chat
 
-### Always Do This
-✅ Read before write
-✅ Test before commit
-✅ Document while coding
-✅ Validate imports exist
-✅ Check for existing solutions
-✅ Maintain consistent style
-✅ Update dependency graph
-✅ Consider edge cases
-✅ Think about scale
+# 2. Request changes
+"Make these UI improvements: ..."
 
-## 🔧 Subagent Orchestration
+# 3. Iterate
+implement changes
+screenshot again
+repeat until satisfied
+```
 
-### Hub-and-Spoke Model
+### 4. Parallel Agent Workflow
+```bash
+# Use git worktrees for parallel work
+git worktree add ../feature-1
+git worktree add ../feature-2
+
+# Spawn separate Claude instances
+claude --worktree=../feature-1 "implement auth"
+claude --worktree=../feature-2 "implement API"
+
+# Merge results
+git worktree remove feature-1
+git merge feature-1
+```
+
+### 5. Headless Automation
+```bash
+# CI/CD automation
+claude -p "run tests and deploy if passing"
+
+# Batch processing
+for file in *.py; do
+  claude -p "refactor $file for performance"
+done
+
+# Pipeline integration
+cat data.json | claude -p "analyze and summarize"
+```
+
+## 🧠 Thinking & Planning Protocols
+
+### Thinking Budget Keywords
+- **"think"**: Standard analysis
+- **"think harder"**: Allocate more tokens for complex problems
+- **"think step-by-step"**: Decompose problem
+- **"ultrathink"**: Maximum depth analysis (use sparingly)
+- **"ULTRA-THINK"**: Emergency deep analysis
+
+### Planning Triggers
+- Complex features: Always use Plan Mode
+- Architecture decisions: "ultrathink about the architecture"
+- Bug fixes: "think step-by-step through the root cause"
+- Performance: "think harder about optimization"
+
+## 🔒 Security Protocols
+
+### Security Rules (Max Priority)
 ```yaml
-main_agent:
-  role: "Coordinator and context manager"
-  responsibilities:
-    - Task decomposition
-    - Context preparation
-    - Result integration
-    - Quality assurance
+ALWAYS:
+  - Validate all inputs
+  - Use parameterized queries
+  - Implement rate limiting
+  - Add authentication checks
+  - Log security events
+  - Use HTTPS only
+  - Encrypt sensitive data
 
-subagents:
-  analysis_agent:
-    trigger: "Complex code analysis"
-    handoff: "Code structure and patterns"
-    
-  test_agent:
-    trigger: "Test generation/execution"
-    handoff: "Implementation and requirements"
-    
-  security_agent:
-    trigger: "Security review"
-    handoff: "Full implementation context"
-    
-  perf_agent:
-    trigger: "Performance optimization"
-    handoff: "Bottlenecks and metrics"
-    
-  doc_agent:
-    trigger: "Documentation updates"
-    handoff: "Code changes and APIs"
+NEVER:
+  - Trust user input
+  - Use eval() or exec()
+  - Store passwords in plain text
+  - Commit API keys
+  - Skip authorization checks
+  - Use outdated dependencies
+  - Ignore security warnings
 ```
 
-### Handoff Token Protocol
+### Security Scanning Workflow
+```bash
+# Before every commit
+npm audit
+pip audit
+bandit -r .
+safety check
+semgrep --config=auto
+
+# Fix all critical/high issues before proceeding
+```
+
+### CWE Prevention Checklist
+- [ ] CWE-79: XSS - Escape all output
+- [ ] CWE-89: SQL Injection - Use ORM/prepared statements
+- [ ] CWE-200: Information Exposure - Sanitize error messages
+- [ ] CWE-250: Execution with Unnecessary Privileges - Principle of least privilege
+- [ ] CWE-352: CSRF - Implement CSRF tokens
+- [ ] CWE-434: Unrestricted Upload - Validate file types
+- [ ] CWE-611: XXE - Disable XML external entities
+- [ ] CWE-798: Hard-coded Credentials - Use environment variables
+
+## 📁 Workspace Management
+
+### Isolation Strategy
+```bash
+# Create isolated workspace
+mkdir ~/claude-workspace
+cd ~/claude-workspace
+
+# Set up environment
+export CLAUDE_WORKSPACE=$(pwd)
+export PATH=$CLAUDE_WORKSPACE/bin:$PATH
+
+# Initialize
+claude --init
+```
+
+### Directory-Specific Rules
+```
+project/
+├── CLAUDE.md                 # Global rules (this file)
+├── frontend/
+│   └── CLAUDE.md            # Frontend-specific rules
+├── backend/
+│   └── CLAUDE.md            # Backend-specific rules
+├── tests/
+│   └── CLAUDE.md            # Testing rules
+└── .claude/
+    └── CLAUDE.local.md      # Private/secret rules (git-ignored)
+```
+
+### Nested Rules Loading
 ```yaml
-handoff_token:
-  task_id: "unique_identifier"
-  context:
-    minimal: "Only what's needed"
-    files: ["specific", "files"]
-    patterns: ["relevant", "patterns"]
-  success_criteria:
-    - "Specific outcome 1"
-    - "Specific outcome 2"
-  validation:
-    command: "test_command"
-    expected: "expected_result"
-  timeout: "max_seconds"
+# In subdirectory CLAUDE.md files
+inherit: ../CLAUDE.md
+override:
+  - specific rules for this directory
+  
+reference:
+  - See: @docs/api-guidelines.md
+  - See: @patterns/frontend-patterns.md
 ```
 
-## 📊 Quality Gates
-
-### Code Quality Metrics
-- **Coverage**: Minimum 80% test coverage
-- **Complexity**: Cyclomatic complexity < 10
-- **Duplication**: Less than 3% duplication
-- **Documentation**: All public APIs documented
-- **Type Safety**: 100% TypeScript coverage
-- **Performance**: Response time < 100ms
-- **Security**: No high/critical vulnerabilities
-
-### Validation Checkpoints
-1. **Pre-commit**: Linting, formatting, type checking
-2. **Pre-push**: Unit tests, integration tests
-3. **Pre-deploy**: E2E tests, performance tests
-4. **Post-deploy**: Smoke tests, monitoring
-5. **Continuous**: Security scanning, dependency updates
-
-## 🧩 MCP Server Utilization
-
-### Context7 (Documentation)
-- Use for framework best practices
-- Library documentation lookups
-- API reference checks
-- Pattern recommendations
-- Implementation examples
-
-### Sequential Thinking (Complex Problems)
-- Multi-step problem solving
-- System design decisions
-- Debugging complex issues
-- Architecture planning
-- Algorithm optimization
-
-### GitHub Integration
-- Direct repository operations
-- Issue tracking and management
-- PR creation and review
-- Commit management
-- Code search across repos
-
-### Memory Server
-- Session state persistence
-- Pattern library storage
-- Knowledge base queries
-- Cross-session context
-- Learning accumulation
-
-## 🔄 Continuous Improvement
-
-### Learning Protocol
-After each task:
-1. Identify new patterns discovered
-2. Document lessons learned
-3. Update pattern library
-4. Refine workflow if needed
-5. Store in memory server
-6. Update confidence scores
-
-### Feedback Loops
-- **User Feedback**: Incorporate corrections immediately
-- **Test Results**: Adjust implementation based on failures
-- **Performance Data**: Optimize based on metrics
-- **Code Reviews**: Apply suggestions systematically
-- **Monitoring**: React to production issues
-
-## 📝 Session Management
-
-### Context Preservation
-- **Start of Session**: Load project context and memory
-- **During Session**: Track all changes and decisions
-- **End of Session**: Save state and learnings
-- **Session Handoff**: Document for next session
-- **Emergency Recovery**: Checkpoint critical states
+## 💰 Token & Cost Management
 
 ### Token Optimization
-- **Chunking Strategy**: Process large files in segments
-- **Compression**: Summarize when approaching limits
-- **Delegation**: Use subagents for parallel work
-- **Caching**: Reuse analysis results
-- **Pruning**: Remove unnecessary context
+```bash
+# Monitor usage
+ccusage  # View token consumption
 
-## 🎪 Command Orchestration
+# Clear strategies
+/clear      # Full reset
+/compact    # Compress context
+/resume     # Recover from crash
 
-### Primary Commands
-- `/generate-prp`: Create comprehensive PRPs from requirements
-- `/execute-prp`: Implement features from PRPs
-- `/init-os`: Initialize the operating system
-- `/scan-project`: Analyze codebase structure
-- `/build-feature`: Implement new features
-- `/improve-code`: Optimize existing code
-- `/test-all`: Run comprehensive tests
-- `/deploy`: Execute deployment workflow
+# Context boundaries
+After major task: /clear
+After 10k tokens: /compact
+Before new feature: /clear
+```
 
-### Context Commands
-- `/save-context`: Persist current session state
-- `/load-context`: Restore previous session
-- `/show-memory`: Display memory contents
-- `/clear-context`: Reset context (use carefully!)
-- `/compress-context`: Optimize token usage
+### Cost-Saving Patterns
+1. **Clear after task completion**
+2. **Use Sonnet for simple tasks**
+3. **Use Opus for complex reasoning**
+4. **Batch similar operations**
+5. **Reuse patterns from memory**
 
-### Analysis Commands
-- `/analyze-code`: Deep code analysis
-- `/find-patterns`: Identify reusable patterns
-- `/check-quality`: Run quality metrics
-- `/security-scan`: Security vulnerability check
+## 🔧 Tool & Permission Management
 
-## 🚀 Performance Guidelines
+### Permission Levels
+```bash
+# Development (trusted environment)
+claude --dangerously-skip-permissions
 
-### Response Time Targets
-- **Simple queries**: < 2 seconds
-- **Code generation**: < 10 seconds
-- **Complex analysis**: < 30 seconds
-- **Full test suite**: < 5 minutes
-- **Deployment**: < 10 minutes
+# Production (careful mode)
+claude --confirm-all
 
-### Resource Usage
-- **Memory**: Track and optimize token usage
-- **Parallel Operations**: Use subagents effectively
-- **Caching**: Maximize result reuse
-- **Compression**: Apply when needed
-- **Batch Processing**: Group similar operations
+# CI/CD (headless)
+claude -p --no-interactive
+```
 
-## 🔑 Power Keywords
+### Auto-Execute Whitelist
+```yaml
+safe_commands:
+  - ls, cat, grep, find  # Read-only
+  - npm test, pytest     # Testing
+  - git status, git diff # Version control
+  
+require_confirmation:
+  - rm, mv, cp          # File operations
+  - git commit, git push # Version control
+  - npm install         # Dependencies
+```
 
-Use these keywords to trigger enhanced behavior:
+## 🛠️ MCP Server Configuration
 
-### IMPORTANT
-Emphasizes critical instructions that must not be overlooked.
+### Pre-Configured Servers
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "description": "Up-to-date documentation",
+      "use_for": ["framework docs", "API references", "examples"]
+    },
+    "sequential": {
+      "description": "Complex reasoning",
+      "use_for": ["architecture", "algorithms", "debugging"]
+    },
+    "playwright": {
+      "description": "Browser automation",
+      "use_for": ["e2e testing", "scraping", "UI validation"]
+    },
+    "taskmaster": {
+      "description": "Task management",
+      "use_for": ["project planning", "issue tracking", "todos"]
+    }
+  }
+}
+```
 
-### PROACTIVELY
-Encourages taking initiative and suggesting improvements beyond requirements.
+### Server Usage Patterns
+```bash
+# Documentation lookup
+"Using Context7, find the latest React hooks documentation"
 
-### ULTRA-THINK
-Triggers deep, thorough analysis for complex problems. Use sparingly.
+# Complex reasoning
+"Using Sequential, design a microservices architecture"
 
-### CRITICAL
-Marks information that could cause failures if ignored.
+# Browser testing
+"Using Playwright, test the login flow"
+```
 
-### MANDATORY
-Indicates non-negotiable requirements that must be followed.
+## 📝 Custom Commands
 
-### PATTERN
-References established patterns that should be followed.
+### Essential Commands
+- `/init`: Initialize project with CLAUDE.md
+- `/scan-project`: Deep codebase analysis
+- `/generate-prp`: Create Product Requirements Prompt
+- `/execute-prp`: Implement from PRP
+- `/security-scan`: Run security audit
+- `/test`: Run test suite
+- `/commit`: Smart git commit
+- `/deploy`: Deployment pipeline
+- `/review`: Code review with AI
 
-### GOTCHA
-Highlights common pitfalls and their solutions.
+### Command Patterns
+```bash
+# Planning commands
+/plan "feature description"
+/estimate "task complexity"
 
-## 📚 Pattern Library Reference
+# Quality commands
+/lint --fix
+/format --all
+/coverage --report
 
-### Architectural Patterns
-- **Repository Pattern**: Data access abstraction
-- **Service Pattern**: Business logic encapsulation
-- **Factory Pattern**: Object creation
-- **Observer Pattern**: Event handling
-- **Singleton Pattern**: Single instance management
+# Documentation
+/document --api
+/diagram --architecture
+```
 
-### Code Patterns
-- **Error Handling**: Consistent error responses
-- **Validation**: Input validation at boundaries
-- **Logging**: Structured logging approach
-- **Caching**: Strategic cache implementation
-- **Rate Limiting**: API throttling
+## 🎯 Subagent Orchestration
 
-### Testing Patterns
-- **Unit Tests**: Isolated component testing
-- **Integration Tests**: System interaction testing
-- **E2E Tests**: Full workflow validation
-- **Performance Tests**: Load and stress testing
-- **Security Tests**: Vulnerability scanning
+### Subagent Activation
+```yaml
+triggers:
+  complex_analysis: analysis_agent
+  test_generation: test_agent
+  security_review: security_agent
+  performance: perf_agent
+  documentation: doc_agent
+  
+coordination:
+  mode: hub_and_spoke
+  handoff: token_validated
+  timeout: 300s
+```
+
+### Multi-Agent Patterns
+```bash
+# Parallel analysis
+spawn: [security_agent, perf_agent]
+merge: results
+decide: optimal_approach
+
+# Sequential refinement
+agent1: generate_code
+agent2: review_code
+agent3: optimize_code
+```
+
+## 🚀 Advanced Techniques
+
+### Voice Input Integration
+```bash
+# With Wispr Flow or similar
+voice: "Create a REST API for user management"
+process: transcribe → plan → implement
+```
+
+### IDE Integration
+```bash
+# VS Code
+Install Claude Code extension
+Use Cmd+K for inline assistance
+
+# Cursor
+Native integration
+Multi-file context awareness
+```
+
+### Continuous Improvement Loop
+```bash
+while developing:
+  1. Implement feature
+  2. Run diagnostics
+  3. Fix issues
+  4. Update CLAUDE.md with learnings
+  5. Commit progress
+  6. Repeat
+```
+
+## 📊 Quality Gates & Validation
+
+### Pre-Commit Checklist
+- [ ] All tests passing
+- [ ] Security scan clean
+- [ ] Linting passed
+- [ ] Coverage > 80%
+- [ ] Documentation updated
+- [ ] CLAUDE.md refined
+- [ ] No console.logs
+- [ ] No commented code
+- [ ] No TODO comments
+
+### Continuous Validation
+```bash
+# After every file save
+npm run lint
+npm test affected
+
+# Before commit
+npm run validate:all
+
+# After commit
+npm run e2e
+```
+
+## 🎪 Session Management
+
+### Session Lifecycle
+```bash
+# Start
+claude --init
+/load-context previous-session
+
+# During
+/save-checkpoint after-feature-x
+/status  # Current state
+
+# End
+/save-context session-$(date +%Y%m%d)
+/handoff  # Document for next developer
+```
+
+### Context Preservation
+```yaml
+save_always:
+  - Architectural decisions
+  - Pattern discoveries
+  - Bug solutions
+  - Performance optimizations
+  
+save_to_memory:
+  - Reusable patterns
+  - Common fixes
+  - Project conventions
+```
+
+## 🚨 Emergency Protocols
+
+### When Things Go Wrong
+```bash
+# Syntax errors
+/lint --fix
+/format --force
+
+# Test failures
+/test --verbose
+/debug failing-test
+
+# Performance issues
+/profile
+/optimize --aggressive
+
+# Security vulnerabilities
+/security-scan --deep
+/patch-vulnerabilities
+
+# Git problems
+git reflog  # Find last good state
+git reset --hard HEAD~1
+```
+
+## 📖 Learning & Adaptation
+
+### Continuous Learning
+```bash
+# When Claude makes a mistake
+# "Add this to CLAUDE.md: [correct approach]"
+
+# When discovering patterns
+# "Remember this pattern: [pattern description]"
+
+# When finding better solutions
+# "Update our approach: [new method]"
+```
+
+### Rule Evolution
+- Start with base rules
+- Add project-specific rules
+- Refine based on mistakes
+- Prune outdated rules
+- Keep under 500 lines
 
 ## 🎯 Success Metrics
 
-Track these for every feature:
-- **Implementation Time**: Actual vs estimated
-- **Bug Count**: Discovered during testing
-- **Test Coverage**: Percentage of code covered
-- **Performance**: Response time and throughput
-- **Code Quality**: Complexity and duplication metrics
-- **Documentation**: Completeness and accuracy
+Track these for continuous improvement:
+- **First-attempt success rate**: >90%
+- **Security vulnerabilities**: 0 critical/high
+- **Test coverage**: >85%
+- **Performance degradation**: <5%
+- **Documentation coverage**: 100% public APIs
+- **Token efficiency**: <10k per feature
+- **Commit frequency**: Every 30 minutes
 
 ---
 
-**Remember**: Context is everything. Never lose sight of the bigger picture while working on details. Every line of code should have a purpose and a place in the overall architecture. Be PROACTIVE in suggesting improvements. Use ULTRA-THINK for complex problems. This is IMPORTANT for success.
+**Remember**: This constitution guides every action. When in doubt, consult these rules. When discovering better patterns, update this document. This is a living constitution that evolves with the project.
 
-**Version**: 2.0
+**Version**: 3.0.0
 **Last Updated**: 2024-08-11
-**Confidence Level**: High
+**Authority**: Supreme guidance for all Claude Code operations
+**Enforcement**: Mandatory for all interactions
