@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Troubleshooting Schema",
+  "description": "Framework for systematic problem diagnosis and resolution",
+  "type": "object",
+  "required": ["problem", "diagnosis", "solution"],
+  "properties": {
+    "problem": {
+      "type": "object",
+      "required": ["symptoms", "context", "impact"],
+      "properties": {
+        "symptoms": {
+          "type": "array",
+          "description": "Observable issues",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": { "type": "string" },
+              "error_message": { "type": "string" },
+              "frequency": { "type": "string", "enum": ["always", "often", "sometimes", "rarely"] },
+              "first_observed": { "type": "string", "format": "date-time" }
+            }
+          }
+        },
+        "context": {
+          "type": "object",
+          "description": "When and how the problem occurs",
+          "properties": {
+            "environment": { "type": "string", "enum": ["development", "staging", "production", "test", "local"] },
+            "trigger": { "type": "string" },
+            "preconditions": { "type": "array", "items": { "type": "string" } },
+            "affected_components": { "type": "array", "items": { "type": "string" } },
+            "recent_changes": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "impact": {
+          "type": "object",
+          "description": "Severity and scope of the issue",
+          "properties": {
+            "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+            "scope": { "type": "string", "enum": ["system-wide", "feature-specific", "user-specific", "edge-case"] },
+            "affected_users": { "type": "string" },
+            "business_impact": { "type": "string" },
+            "workaround_available": { "type": "boolean" }
+          }
+        },
+        "reproduction": {
+          "type": "object",
+          "properties": {
+            "steps": { "type": "array", "items": { "type": "string" } },
+            "reproducibility": { "type": "string", "enum": ["always", "frequently", "occasionally", "rarely", "unable"] },
+            "minimal_example": { "type": "string" }
+          }
+        }
+      }
+    },
+    "diagnosis": {
+      "type": "object",
+      "required": ["potential_causes", "evidence", "verification_steps"],
+      "properties": {
+        "potential_causes": {
+          "type": "array",
+          "description": "Possible root causes",
+          "items": {
+            "type": "object",
+            "properties": {
+              "hypothesis": { "type": "string" },
+              "probability": { "type": "string", "enum": ["very_likely", "likely", "possible", "unlikely"] },
+              "category": { "type": "string", "enum": ["bug", "configuration", "environment", "data", "performance", "security", "integration", "user_error"] },
+              "components_involved": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "description": "Supporting information for each cause",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["log", "metric", "trace", "dump", "screenshot", "code", "config"] },
+              "description": { "type": "string" },
+              "location": { "type": "string" },
+              "relevant_to": { "type": "string" }
+            }
+          }
+        },
+        "verification_steps": {
+          "type": "array",
+          "description": "How to confirm each potential cause",
+          "items": {
+            "type": "object",
+            "properties": {
+              "step": { "type": "string" },
+              "expected_result": { "type": "string" },
+              "tools_needed": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "eliminated_causes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "hypothesis": { "type": "string" },
+              "reason_eliminated": { "type": "string" }
+            }
+          }
+        },
+        "root_cause": {
+          "type": "object",
+          "properties": {
+            "confirmed": { "type": "boolean" },
+            "description": { "type": "string" },
+            "evidence": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "solution": {
+      "type": "object",
+      "required": ["approach", "steps", "verification"],
+      "properties": {
+        "approach": {
+          "type": "object",
+          "description": "Overall strategy",
+          "properties": {
+            "strategy": { "type": "string", "enum": ["fix", "workaround", "configuration_change", "rollback", "feature_toggle", "data_correction"] },
+            "description": { "type": "string" },
+            "risk_level": { "type": "string", "enum": ["low", "medium", "high"] },
+            "estimated_time": { "type": "string" }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "description": "Specific actions to take",
+          "items": {
+            "type": "object",
+            "properties": {
+              "order": { "type": "integer" },
+              "action": { "type": "string" },
+              "details": { "type": "string" },
+              "rollback": { "type": "string" },
+              "validation": { "type": "string" }
+            }
+          }
+        },
+        "verification": {
+          "type": "object",
+          "description": "How to confirm the solution worked",
+          "properties": {
+            "tests": { "type": "array", "items": { "type": "string" } },
+            "monitoring": { "type": "array", "items": { "type": "string" } },
+            "success_criteria": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "prevention": {
+          "type": "object",
+          "description": "How to prevent future occurrences",
+          "properties": {
+            "immediate_actions": { "type": "array", "items": { "type": "string" } },
+            "long_term_improvements": { "type": "array", "items": { "type": "string" } },
+            "monitoring_additions": { "type": "array", "items": { "type": "string" } },
+            "documentation_updates": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "implementation": {
+          "type": "object",
+          "properties": {
+            "code_changes": { "type": "array", "items": { "type": "string" } },
+            "configuration_changes": { "type": "array", "items": { "type": "string" } },
+            "deployment_notes": { "type": "string" }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "ticket_id": { "type": "string" },
+        "reported_by": { "type": "string" },
+        "assigned_to": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "resolved_at": { "type": "string", "format": "date-time" },
+        "resolution_time": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "investigating", "identified", "fixing", "testing", "resolved", "closed"] }
+      }
+    }
+  }
+}
